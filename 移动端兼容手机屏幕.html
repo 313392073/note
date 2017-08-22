@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--手机端开发必须加的一段代码-->
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimun-scale=1,user-scalable=no"/>
+		<style type="text/css">
+			/*设置页面的最大值和最小值*/
+			html,body,#app{
+				max-width: 640px;
+				min-width: 320px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/javascript">
+			//兼容手机屏幕大小不同的情况
+			window.onload=window.onresize=function(){
+				document.documentElement.style.fontSize = document.documentElement.clientWidth*40/640+'px';
+			}
+		</script>
+	</body>
+</html>

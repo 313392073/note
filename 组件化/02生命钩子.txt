@@ -1,0 +1,59 @@
+1：beforeCreated：
+	在实例初始化之后，数据观测（data observer）和event/watcher事件配置之前被调用
+	使用场景：如果想看 watcher的回调是否根据后台接口动态变化的  用这个钩子函数
+	
+2：created:在实例已经创建完成之后被调用，在这一步，实例完成以下配置：
+	数据观测(data observer) 属性和方法的运算，watch/event事件回调
+	然而 挂载阶段还没开始  $el属性目前不可见 
+	使用场景：根据后台接口动态改变data和methords的情况
+
+3：beforeMount:在挂载之前被调用 相关的render函数首次被调用
+	使用场景：页面渲染时所需要的数据  都应该在这之前完成赋值
+	
+4：mounted:在挂载之后被调用  在这一步创建vm.$el并替换el 并挂载到实例上
+	使用场景：此时元素已经渲染完成了 依赖于dom的代码就放在这里 比如监听dom事件
+	
+5:beforeUpdate:$vm.data更新之后 虚拟dom重新渲染 和打补丁之前被调用
+	使用场景：可以进一步修改$vm.data 这不会触发附加的重渲染过程
+	
+6：updated：虚拟dom重新渲染  和打补丁之后被调用 此时dom已经更新
+	使用场景：可以执行依赖于dom的操作  多数情况下 要避免在此间修改状态
+	应使用计算属性 或 watcher替代
+	
+7：beforeDestory:实例被销毁之前调用 在这一步 实例任然完全可用
+
+8：destoryed:vue实例销毁后调用 此时 vue实例指示的所有东西已经解除绑定 
+	所有的事件监听器都已经被移除 所有的子实例也已经被销毁
+	使用场景：添加点提示什么的
+		
+注意：
+beforeMount、mounted、beforeUpdate、updated、beforeDestory、destoryed这几个钩子函数
+在服务器端渲染期间不被调用
+	
+如何监听url中参数变化:
+正常情况下 url里面的参数发生变化之后 页面是不会更新的 因为vue视为url没有变化 也没有处罚任何生命周期的钩子函数
+1:监听$route的变化来实现
+watch:{
+	"$route":function(val,oldVal) {
+		do something
+	}
+}
+2：在vue中监听dom事件(绑定多次不会覆盖)
+element.addEventListener("click",function(){
+	do something
+})
+
+
+Vue.nextTick
+在下次dom更新循环结束之后执行延迟回调  在修改数据之后立即使用这个方法 获取更新之后的dom
+使用场景：created()钩子函数执行的时候dom其实并未进行任何渲染 
+
+created(){
+	setTimeout(()=>{
+		this.number = 100;
+		this.$nextTick(()=>{
+			console.log('nextTick');
+		})
+	},100)
+}
+

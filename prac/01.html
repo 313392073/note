@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="demo">
+			<div v-html="aa"></div>
+			<input type="text" placeholder="你们接受的伟大分数是" :value="minScore" @focus="A"/>
+			<ol>
+				<li v-for="list in scoreArr" v-if="list.score<=minScore">排名:{{list.name}}分数:{{list.score}}</li>
+			</ol>
+			<ul>
+				<li v-for="(ltem,key) in bb">{{key}}:{{ltem}}</li>
+			</ul>
+		</div>
+		<script>
+			var app = new Vue({
+				el:"#demo",
+				data: {
+					scoreArr:[
+					{'name':1,'score':60},
+					{'name':2,'score':65},
+					{'name':3,'score':55},
+					{'name':4,'score':70},
+					{'name':5,'score':75}
+					],
+					minScore:65,
+					aa:'<p>我是一个饼</p>',
+					bb:{
+						name:'haha',
+						age:12,
+						job:'程序猿'
+					}
+				},
+				watch:{
+					minScore(ov,nv){
+						console.log(ov,nv);
+					}
+				},
+				methods:{
+					A:function(){
+						setInterval(()=>{
+							this.minScore += 5
+						},1000)
+					}
+				}
+			});
+		
+		</script>
+	</body>
+</html>

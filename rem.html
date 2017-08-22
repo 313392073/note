@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, user-scalable=0"/>
+		<script type="text/javascript">
+			(function(){
+				var html = document.documentElement;
+				var hwidth = html.clientWidth;
+				html.style.fontSize = hwidth/16+"px";
+			})()
+		</script>
+			<style type="text/css">
+				*{
+					margin: 0;
+					padding: 0;
+				}
+				body{
+					overflow: hidden;
+				}
+				div{
+					width: 4rem;border: 1px solid #333;box-sizing: border-box;float: left;font-size: 12/20rem;text-align: center;
+				}
+			</style>
+	</head>
+	<body>
+		<div>111</div>
+		<div>222</div>
+		<div>333</div>
+		<div>444</div>
+		<script type="text/javascript">
+			(function(){
+				window.onresize = function(){
+					setTimeout(function(){
+//						var meta = document.getElementsByTagName("meta")[1];
+					},10)
+				}
+			})()
+		</script>
+	</body>
+</html>

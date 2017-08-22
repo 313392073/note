@@ -1,0 +1,25 @@
+<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<h1>头部</h1>
+<div>
+	<table>
+		<tr>
+			<th>111</th>
+			<th>111</th>
+			<th>111</th>
+			<th>111</th>
+			<th>111</th>
+		</tr>
+		<tr>
+			<td><a href="left.html">点我</a></td>
+			<td><a href="top.html">点我</a></td>
+			<td><a href="footer.html">点我</a></td>
+			<td><a href="">点我</a></td>
+			<td><a href="">点我</a></td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+	$("td>a").on("click",function(){
+		$("section").load($(this).attr('data-href'));
+	})
+</script>

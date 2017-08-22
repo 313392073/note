@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+		;(function($){
+			$.fn.extend({
+				"bold":function(){
+					return this.css({fontWeight:"bold"});
+				}
+			})
+		})(jQuery);
+		
+//		1:jquery.extend()方法有一个重载
+//		jQuery.extend(object) 一个参数的用于扩展jQuery类本身
+//		也就用来在JQuery类、命名空间上增加新函数 或叫做静态方法
+//		
+		;(function($){
+			jQuery.extend({
+				"minValue":function(a,b) {
+					return a<b?a:b;
+				},
+				"maxValue":function(a,b) {
+					return a>b?a:b;
+				}
+			})
+		})(jQuery);
+		
+//		重载版本:jQuery.extend()
+// 		用一个或多个其他对象来扩展一个对象 返回被扩展的对象
+// 		如果不指定target 则就给命名空间本身进行扩展
+		
+//		jQuery.fn.extend(Object) 扩展jQuery元素集来提供新的方法
+//		jQuery.fn = jQuery.prototype = {
+//			init:function(selector,context) {
+//				...
+//			}
+//		}
+//		
+//		
+//		!function($) {
+////			do something;
+//		}(jQuery);
+//		(function($) {
+//			do something
+//		})(jQuery);
+
+
+		//定一个闭包区域 防止插件"污染"
+		(function($) {
+			
+		})(window.jQuery);
+		
+		//jQuery.fn.extend(object)  扩展jqueryf方法 
+		(function($) {
+			$.fn.extend({
+				"height":function(options) {
+					do something
+				}
+			});
+		})(window.jQuery);
+		
+		(function($) {
+			$.fn.extend({
+				"height":function(options) {
+					//使用jquery.extend覆盖插件默认参数
+					var opts = $.extend({},defaults,options);
+					//this值得是jquery对象
+					//遍历所有要高亮的dom 当调用height插件的一个集合的时候
+					this.each(function() {
+						//获取当前dom的jquery对象  这里的this是当前循环的dom
+						var $this = $(this)
+						$this.css({
+							backgroundColor:opts.background,
+							color:opts.foreground
+						});
+					});
+				}
+			});
+			var defaults = {
+				forefround:'red',
+				background:'yellow'
+			}
+		})(window.jQuery);
+		
+		(function($) {
+			$.fn.extend({
+				"height":function(options) {
+					if(!isValid(options)) {
+						return this;
+					}
+					
+					var opts = $.extend({},defaults,options);
+					return this.each(function() {
+						var $this = $(this);
+						$this.css({
+							backgroundColor:opts.background,
+							color:opts.foreground
+						});
+						var markup = $this.html();
+						markup = $.fn.height.format(markup);
+						$this.html(markup)
+					});
+				}
+			});
+			
+			var defaults = {
+				foreground:"red",
+				background:"yellow"
+			}
+			
+			$.fn.height.format = function(str) {
+				return "<strong>"+str+"</strong>";
+			}
+			
+			function isValid(options) {
+				return !options || (options && typeof options === "object")?true:false;
+			}
+		})(window.jQuery);
+		</script>
+	</body>
+</html>

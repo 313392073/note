@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--全局组件-->
+		<div id="app">
+			<runoob></runoob>
+		</div>
+		<script type="text/javascript">
+			Vue.component('runoob',{
+				template:'<h1>自定义组件</h1>'
+			});
+			new Vue({
+				el:"#app"
+			})
+		</script>
+		
+		<div id="demo"></div>
+		<script type="text/javascript">
+			var Child = {
+				template:"<h1>自定义组件</h1>"
+			}
+			new Vue({
+				el:'#demo',
+				components: {
+					'runoob':Child
+				}
+			})
+		</script>
+		<!--父传子-->
+		<div id="app1">
+			<child message='hello'></child>
+		</div>
+		<script type="text/javascript">
+		//定义子组件
+			Vue.component('child',{
+				template:"<span>{{message}}</span>",
+				props:['message']
+			});
+			//创建根实例
+			new Vue({
+				el:"#app1"
+			})
+		</script>
+		
+		<div id="app2">
+			<div>
+				<input type="text" v-model='parentMsg'/>
+				<br />
+				<child v-bind:message='parentMsg'></child>
+			</div>
+		</div>
+		<script type="text/javascript">
+			Vue.component('child',{
+				props:['message'],
+				template:'<span>{{message}}<span>'
+			})
+			new Vue({
+				el:"app2",
+				data: {
+					parentMsg:'父组件的内容'
+				}
+			})
+		</script>
+	</body>
+</html>

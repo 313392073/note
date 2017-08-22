@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<navbar @my-event='pop'></navbar>
+		</div>
+		<script type="text/javascript">
+			Vue.component('navbar',{
+				template:`<button @click="clicker">POP</button>`,
+				methods: {
+					clicker: function(){
+						this.$emit('my-event');
+					}
+				}
+			});
+			
+			var app = new Vue({
+				el:'#app',
+				methods: {
+					pop:function(){
+						alert('a child component pops.')
+					}
+				}
+			});
+			
+			//子组件捕捉clicker事件后  通过this.$emit("my-event")向上传递了my-event
+			//事件  而在navbar组件中  捕获my-event这一自定义事件  从而打通了反向额通过
+			
+			
+			
+			Vue.component('navbar',{
+				render:function(createElement){
+					return createElement('h1','template..');
+				}
+			})
+			
+			let obj = {
+				username:'my-username',
+				psd:'my-password',
+			}
+			function destruct(username,psd) {
+				console.log(username,psd);
+			}
+			let username = obj.username;
+			let psd = obj.psd;
+			destruct(username,psd);
+			
+//			解构			
+			let obj = {
+				username:'my-username',
+				psd:'my-psd',
+			}
+			
+			function destruct({username,psd}) {
+				console.log(username,psd);
+			}
+			
+			destruct(obj);
+			
+			
+			let obj = {
+				funcname(){
+					console.log('xxx');
+				}
+			}
+			
+			let FUNC_NAME = 'funcname';
+			let obj = {
+				[FUNC_NAME](){
+					console.log('xxx');
+				}
+			}
+			
+			function func(name,age) {
+				console.log(name,age);
+			}
+			func('asca',22);
+			
+			(name,age) => {
+				console.log(name,age);
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+//			var fruits = ['apple','banana'];
+//			fruits.forEach(function(item,index,array){
+//				console.log(item,index);
+//				console.log(array);
+//			})
+
+//			var numbers = [1,2,3];
+//			numbers.push(4);
+//			console.log(numbers);
+
+//			var bar = ['a','b','c'];
+//			
+//			Array.from(bar);
+//			console.log(bar);
+//			console.log(Array.from('foo'))
+
+//			if(!Array.isArray) {
+//				Array.isArray = function(arg) {
+//					return Object.prototype.toString.call(arg) === '[object Array]';
+//				}
+//			}
+//			console.log(Array.isArray('aaa,bbb'));
+
+//			var arr = ['a','b','c','d'];
+//			var iterator = arr.entries();
+//			console.log(iterator);
+//			console.log(iterator.next());
+//			console.log(iterator.next());
+//			console.log(iterator.next());
+//			console.log(iterator.next());
+//			console.log(iterator.next());
+//			for(var i of iterator) {
+//				console.log(i);
+//			}
+
+//			function More(element,index,array) {
+//				return (element >= 10);
+//			}
+//			var arr = [12,5,8,11,13];
+//			var pass = arr.every(More);
+//			console.log(pass);  //false
+
+//			function more(value) {
+//				return (value>=10);
+//			}
+//			var arr = [1,41,21,5,4,10];
+//			console.log(arr.filter(more));
+//			//41 21 10
+////			es6
+//			const more = value => (value >= 10);
+//			let [...spread] = [12,5,8,120,44];
+//			let filtered = sperad.filter(more)
+////			12 120 44
+
+//			var a = [0,1,,,,5,6];
+//			a.find(function(value,index) {
+//				if(index == 0) {
+//					console.log('delete a[5] with value'+a[5]);
+//					delete a[5];
+//				}
+//				console.log('Visited index ' + index + ' with value ' + value); 
+//			})
+
+//			var a = ['a','b','c'];
+//			a.forEach(function(element) {
+//				console.log(element);
+//			})
+
+//			function Counter() {
+//				this.sum = 0;
+//				this.count = 0;
+//			}
+//			Counter.prototype.add = function(array) {
+//				array.forEach(function(entry) {
+//					this.sum += entry;
+//					this.count++;
+//				},this);
+//			}
+//			
+//			function copy(obj) {
+//				var copy = Object.create(Object.getPrototypeOf(obj));
+//				var propNames = Object.getOwnPropertyNames(obj);
+//				propNames.forEach(function(name) {
+//					var desc = Object.getOwnPropertyDescriptor(obj,name);
+//					Object.definedProperty(copy,name,desc);
+//				});
+//				return copy;
+//			}
+
+//			var include=[];
+//			var array = ['a','b','c','d','c','a','d'];
+//			var element = 'a';
+//			var idx = array.indexOf(element);
+//			while(idx ! = -1) {
+//				include.push(idx);
+//				idx=array.indexOf(element,idx + 1);
+//			}
+//			console.log(include);[0,2,4]
+
+//		function updayeVegetableCollection(veggies,veggie) {
+//			if(veggies.indexOf(veggie) === -1) {
+//				veggies.push(veggie);
+//				
+//			}else if(veggies.indexOf(veggie) > -1){
+//				
+//			}
+//		}
+
+//		var arr = ['a','b','c'];
+//		var iterator = arr.keys();
+//		var iterators = arr.entries();
+//		console.log(iterator);
+//		console.log(iterators);
+		
+//		var numbers = [1,5,2,3];
+//		var arr = numbers.map(function(n) {
+//			return (n*2);
+//		});
+//		console.log(arr);
+
+//		var kvArray = [
+//			{key:1,value:10},
+//			{key:2,value:20},
+//			{key:3,value:30}
+//		]
+//		var res = kvArray.map(function(obj) {
+//			var rObj = {};
+//			rObj[obj.key] = obj.value;
+//			return rObj;
+//		});
+//		console.log(res);
+//		var myHonda = {color:'red',hweels:4,engine:{cylinders:4,size:2}}
+//		var myCar = [myHonda,2,"cherry condition","purchased 1997"];
+//		var newCar = myCar.slice(0,2);
+//		console.log(newCar);
+//		console.log(JSON.stringify(newCar));
+		
+		function list() {
+			return Array.prototype.slice.call(arguments);
+		}
+		var lis = list(1,2,3);
+		console.log(lis); //[1,2,3]
+		
+		</script>
+	</body>
+</html>

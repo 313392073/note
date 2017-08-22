@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+	</head>
+	<body>
+		<h2>welcome</h2>
+		<button>切换用户</button>
+		<!--<div id="app">
+			<my-component v-bind:my-name="name" v-bind:my-age="age"></my-component>
+		</div>
+		<template id="myComponent">
+			<table>
+				<tr>
+					<th>子组件的数据</th>
+				</tr>
+				<tr>
+					<td>my name</td>
+					<td>{{myName}}</td>
+				</tr>
+				<tr>
+					<td>my age</td>
+					<td>{{myAge}}</td>
+				</tr>
+			</table>
+		</template>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"app",
+				data: {
+					name:'keepfool',
+					age:20
+				},
+				components: {
+					'myComponent':{
+						template: "#myComponent",
+						props:['myName','myAge']
+					}
+				}
+			})
+		</script>-->
+		<script type="text/javascript">
+			var contents = document.querySelector("h2");
+			var btn = document.querySelector("button");
+			function SetUserName(){
+				var myName = prompt('Please enter your name');
+				localStorage.setItem('name',myName);
+				contents.innerHTML = 'Welcome'+myName;
+			}
+			if(!localStorage.getItem('name')) {
+				SetUserName();
+			}else{
+				var storedName = localStorage.getItem('name');
+				contents.innerHTML = 'Welcome'+storedName;
+			}
+			btn.onclick = function(){
+				SetUserName();
+			}
+		</script>
+	</body>
+</html>

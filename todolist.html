@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <style type="text/css">
+        	html{
+        		font-size: 10px;
+        	}
+        	.isFinish {
+      		  background-color: #f60!important;
+      		}
+        </style>
+	</head>
+	<body>
+		<div id="app" class="container text-center">
+			<h2>{{title}}</h2>
+			<div class="row">
+				<div class="col-md-12">
+					<form role="form">
+						<div class="form-group">
+							<label for="toitem">添加任务事项</label>
+							<input type="text" class="form-control" id="toitem" v-model="newitem" @blur="addItem()"/>
+						</div>
+						<div class="form-group list-group text-left">
+							<a href="#" class="list-group-item active text-left">任务清单：</a>
+							<a href="#" class="list-group-item" v-for="list in items" @click="toggleFinish(list)">
+								<span>{{list.id}}</span>
+								{{list.lable}}
+								<span class="badge" :class="{isFinish:list.isFinish}">√</span>
+							</a>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">任务计划：</div>
+						<div class="panel-body">
+							请在一周内完成这些计划！
+						</div>
+						<div class="panel-footer text-right">
+							<button class="btn btn-info" @click="clearItem">清空任务计划</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//该网站的localStorage的键值，用于存放数据;
+			var todoList = 'todolist';
+			//对localStorage的封装
+			var lsp = (function(){
+				return ({
+					add:function(dataval){
+						localStorage.setItem(todoList,JSON.stringify(dataval));
+					},
+					get: function(){
+						return JSON.parse(localStorage.getItem(todoList));
+					},
+					remove:function(){
+						localStorage.removeItem(todoList);
+					},
+					clear:function(){
+						localStorage.clear();
+					}
+				})
+			})();
+			
+			var app = new Vue({
+				el:"#app",
+				data:{
+					title:'任务清单demo',
+					items:lsp.get() || [], //读取数据  默认是空
+					newitem:'' //要添加的数据
+ 				},
+ 				methods:{
+ 					addItem:function(){
+ 						var self = this;
+ 						this.items.push({
+ 							id:self.items.length+1,
+ 							lable:self.newitem,
+ 							isFinish:true
+ 						});
+ 						lsp.add(this.newitem);
+ 						this.newitem = '';
+ 					},
+ 					toggleFinish:function(This) {
+ 						This.isFinish = !This.isFinish;
+ 					},
+ 					clearItem:function(){
+ 						if(confirm("你确定要清空这些计划吗？")) {
+ 							this.items = [];
+ 							lsp.clear();
+ 							alert("清除成功！");
+ 						}
+ 					}
+ 				}
+			})
+		</script>
+	</body>
+</html>

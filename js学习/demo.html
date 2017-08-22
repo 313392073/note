@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+//			function createNewPerson(name) {
+//				var obj = {};
+//				obj.name = name;
+//				obj.greeting = function(){
+//					alert('hi:'+name);
+//				}
+//				return obj;
+//			}
+//			var a = createNewPerson('heihei');
+//			a.greeting();
+
+			function Person(name) {
+				this.name = name;
+				this.greeting = function() {
+					alert(this.name);
+				}
+			}
+//			
+			var p1 = new Person('aaa');
+			var p2 = Object.create(p1);
+			console.log(p1);
+			console.log(p1.prototype);
+			console.log(p2);
+			console.log(p2.__proto__);
+//			var p2 = new Person('bbb');
+//			p1.greeting();
+//			p2.greeting();
+//			function Person(name) {
+//				this.name = name;
+//				this.
+//			}
+////			
+//			function Person(first,last,age,gender,interests) {
+//				this.name = {
+//					first,last
+//				};
+//				this.age = age;
+//				this.gender = gender;
+//				this.interests = interests;
+//			}
+
+	
+		</script>
+	</body>
+</html>

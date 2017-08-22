@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--Vue.nextTick([callback,context])-->
+		<!--在下次dom更新循环结束之后延迟毁回调  在修改数据之后立即使用这个方法  获取更新后的dom-->
+		vm.msg = 'hello'; 修改数据
+		Vue.nextTick(function(){
+			<!--dom  更新了-->
+		})
+	</body>
+</html>

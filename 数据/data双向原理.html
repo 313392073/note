@@ -1,0 +1,21 @@
+vue自动将data里面的数据进行递归转换成getter和setter 
+然后就可以自动更新html标签了
+
+data对象类型：Object或者function
+如果是组件对象  data必须是function类型
+
+Vue的计算属性 computed的属性会自动混入vue的实例中
+所有的getter和setter的this上下文自动绑定为vue实例
+在计算属性 中定义的函数里面可以直接使用指向了vue实例的this
+
+类型：
+键：函数 {key:Function() | {get:Function,set:Function}}
+当然，可以省略setter  如果省略了setter 那么值就可以是普通函数  但必须有返回值
+
+methods : 
+
+watch:一个对象 键是需要观察的表达式 值是对应的回调函数 值也可以是方法名 或者包含选项的对象
+vue实例将会在实例化时调用$watch()  遍历watch对象的每一个属性
+
+vue实例生命周期
+开始创建 初始化数据 编译模板 挂载dom 渲染->更新->渲染 卸载

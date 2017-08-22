@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="mount-point"></div>
+		<!--使用基础Vue构造器  创建一个子类 参数是一个包含组件选项的对象-->
+		<script type="text/javascript">
+		//  创建构造器
+			var Profile = Vue.extend({
+				template:`<div>{{firstName}} {{lastName}}</div>`
+				data:function(){
+					return {
+						lastName:'Walter',
+						firstName:'White',
+						alias:'Heisenberg'
+					}
+				}
+			});
+			//创建Profile实例  并挂在到一个元素上
+			new Profile().$mount("#mount-point")
+		</script>
+	</body>
+</html>

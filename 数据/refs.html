@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="parent">
+			<user-profile ref="profile"></user-profile>
+		</div>
+		<script type="text/javascript">
+			var parent = new Vue({
+				el:'#parent',
+			})
+			var child = parent.$refs.profile
+		</script>
+	</body>
+</html>

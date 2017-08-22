@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		/*
+		 * 第一种 为内容区域添加最小的高度
+		 * 这种方法重要用vh(viewport height)来计算整体视窗的高度
+		 * (1vh等于视窗高度的1%) 然后减去底部footer的高度 从而求得内容区域的
+		 * 最小高度 
+		 * 
+		 * 缺点：如果页面的footer高度不同 每一个页面要重新计算一次 
+		 * */
+			/*.content{
+				min-height: calc(100vh - footer的高度);
+				box-sizing: border-box;
+			}*/
+			
+			/*第二种 flex布局 
+			 *这种事利用flex布局对视窗高度进行分割 footer的flex设置为0
+			 * footer获得其固有的高度  content的flex设为1 
+			 * 这样它就会充满去除footer的其他部分
+			 * */
+			/*body{
+				display: flex;
+				flex-flow: column;
+				min-height: 100vh;
+			}
+			.content{
+				flex: 1;
+			}
+			.footer{
+				flex: 0;
+			}*/
+			
+			/*第三种  在content的外面可以添加一个wrapper*/
+		
+			html,body,.wrapper{
+				height: 100%;
+			}
+			body>.wrapper{
+				height: auto;
+				min-height: 100%;
+			}
+			.content{
+				/*必须使用和footer相同的高度*/
+				padding-bottom: 150px; 
+			}
+			.footer{
+				position: relative;
+				margin-top: -150px;
+				height: 150px;
+				clear: both;
+			}
+			.clearfix{
+				display: inline-block;
+			}
+			.clearfix:after{
+				content: '';
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden;
+			}
+		</style>
+	</head>
+	<!--<body>-->
+		<!--content是内容区块-->
+		<!--<div class="content"></div>
+		<div class="footer"></div>
+	</body>-->
+	
+	<!--第三种-->
+	<body>
+		<div class="wrapper clearfix">
+			<div class="content"></div>
+		</div>
+		<div class="footer"></div>
+	</body>
+</html>

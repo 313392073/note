@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		//state 状态管理器  状态对象
+		//mutations 触发的状态(同步状态)
+		//getters  计算状态属性
+		
+		//actions 异步状态  批处理状态触发的集合
+		//context 整个的store
+			const app = new Vue({
+				el:"#app",
+				//把store对象提供给store选项  这可以把store的实例注入所有的子组件
+				store,
+				components:{Counter},
+				template:`<div class="app">
+					<counter></counter>
+				</div>`
+			});
+			const Counter = {
+				template:`<div>{{count}}</div>`,
+				computed: {
+					count(){
+						return this.$store.state.count
+					}
+				}
+			}
+			
+			import {mapState,mapMutations,mapGetters} from 'vuex';
+			//state对象的访问
+			export default{
+				name:'app',
+				data(){
+					return {
+						count:0
+					}
+				},
+//				computed:{
+//					count(){
+//						return this.$store.state.count+1
+//					}
+//				}
+//				computed:mapState([
+//					'count'
+//				]),
+//				computed:{
+//					...mapState([
+//						'count'
+//					]),
+////					count(){
+////						return this.$store.getters.count
+////					}
+//					...mapGetters([
+//						'count'
+//					])
+//				},
+				methods:{
+					...mapMutations([
+						'jia',
+						'jian'
+					]),
+					...mapActions([
+						'jianplus'
+					])
+				}
+
+			}
+			
+			
+			const getters = {
+				count:function(state){
+					return state.count += 100
+				}
+			}
+			
+			
+			const actions = {
+				jiaplus(context){
+					context.commit('jia',{a:1})
+				},
+				jianplus(commit) {
+					commit('jian')
+				}
+			}
+			//mutations触发状态管理
+//			$store.commit()
+		</script>
+	</body>
+</html>

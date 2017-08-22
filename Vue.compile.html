@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var res = Vue.compile('<div>{{msg}}</div>')
+			new Vue({
+				data: {
+					msg:'hello';
+				},
+				render:res.render,
+				staticRenderFns:res.staticRenderFns
+			})
+		</script>
+	</body>
+</html>
