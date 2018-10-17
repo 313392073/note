@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery.js"></script>
+    <style type="text/css">
+        img{
+            min-height: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="./img/banner.jpg" alt="图片加载中。。。" data-src="https://cdn.liaoxuefeng.com/cdn/files/attachments/00151045553344099d9368ac6604e81ac1c4ab8bbc70ad3000/l">
+        <img src="./img/banner.jpg" alt="图片加载中。。。" data-src="https://cdn.liaoxuefeng.com/cdn/files/attachments/00151045553344099d9368ac6604e81ac1c4ab8bbc70ad3000/l">
+        <img src="./img/banner.jpg" alt="图片加载中。。。" data-src="https://cdn.liaoxuefeng.com/cdn/files/attachments/00151045553344099d9368ac6604e81ac1c4ab8bbc70ad3000/l">
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            var $window = $(window);
+            var lazyImgs = new Array();
+            // 将所有的图片放在一个数组中
+            $("img[data-src]").each(function(index,item){
+                lazyImgs.push($(item));
+            })
+            var onScroll = function(){
+                var wtop = $window.scrollTop();
+                if(lazyImgs.length > 0) {
+
+                    var wheight = $window.height()
+                    var loadIndex = [];
+                    lazyImgs.forEach(function(item,index){
+                        //判断当前的图片是不是在可视区范围内
+                        if($(item).offset().top - wtop < wheight) {
+                            //是就将当前img的attr属性值改变
+                            $(item).attr("src",$(item).attr('data-src'))
+                            //将要删除的index存在数组中
+                            loadIndex.unshift(index)
+                        }
+                    })
+                    //删除已经闪过的img
+                    loadIndex.forEach(function(item,index){
+                        lazyImgs.splice(index,1)
+                    })
+                }
+            }
+            $window.scroll(onScroll);
+            onScroll()
+        })
+    </script>
+</body>
+</html>
