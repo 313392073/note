@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/reset.css">
+    <title>Document</title>
+    <style type="text/css">
+        .fixed-wrapper{
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            height: 100%;
+        }
+        .fixed-box{
+            width: 480px;
+            height: 260px;
+            padding: 50px 30px 30px;
+            position: absolute;
+            top: 50%;
+            margin-top: -130px;
+            left: 50%;
+            margin-left: -240px;
+            overflow: hidden;
+            background-color: #fff;
+            animation: show 0.2s;
+        }
+        .fixed-box .fixed-title{
+            position: absolute;
+            top: -15px;
+            right: -30px; 
+            width: 60px;
+            height: 40px;
+            line-height: 40px;
+            background-color:#DFB242;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .fixed-box .fixed-title i{
+            position: absolute;
+            left: 12px;
+            top: 7px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 400;
+        }
+        .fixed-box .fixed-title i:hover{
+            animation: rotated 0.8s ease-in-out;
+        }
+        .fixed-tipMsg{
+            font-size: 16px;
+            color: #333333;
+        }
+        .fixed-btns{
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+            text-align: center;
+        }
+        .fixed-btns>a{
+            display: inline-block;
+            width: 120px;
+            height: 50px;
+            line-height: 50px;
+            color: #fff;
+            font-size: 18px;
+            background-color:#DFB242;
+            border-radius: 2px; 
+        }
+        .fixed-btns>a:hover{
+            background-color: #F7D276;
+        }
+        @keyframes rotated{
+            0%{
+                transform:rotate(0deg);
+                -ms-transform:rotate(0deg); /* Internet Explorer */
+                -moz-transform:rotate(0deg); /* Firefox */
+                -webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+                -o-transform:rotate(0deg); /* Opera */
+            }
+            25%{
+                transform:rotate(180deg);
+                -ms-transform:rotate(180deg); /* Internet Explorer */
+                -moz-transform:rotate(180deg); /* Firefox */
+                -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+                -o-transform:rotate(180deg); /* Opera */
+            }
+            50%{
+                transform:rotate(360deg);
+                -ms-transform:rotate(360deg); /* Internet Explorer */
+                -moz-transform:rotate(360deg); /* Firefox */
+                -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+                -o-transform:rotate(360deg); /* Opera */
+            }
+            75%{
+                transform:rotate(180deg);
+                -ms-transform:rotate(180deg); /* Internet Explorer */
+                -moz-transform:rotate(180deg); /* Firefox */
+                -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+                -o-transform:rotate(180deg); /* Opera */
+            }
+            100%{
+                transform:rotate(0deg);
+                -ms-transform:rotate(0deg); /* Internet Explorer */
+                -moz-transform:rotate(0deg); /* Firefox */
+                -webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+                -o-transform:rotate(0deg); /* Opera */
+            }
+        }
+
+        @keyframes show{
+            0%{
+                transform:scale(0);
+                -ms-transform:scale(0); /* Internet Explorer */
+                -moz-transform:scale(0); /* Firefox */
+                -webkit-transform:scale(0); /* Safari 和 Chrome */
+                -o-transform:scale(0); /* Opera */
+                opacity: 0;
+            }
+            50%{
+                transform:scale(0.5);
+                -ms-transform:scale(0.5); /* Internet Explorer */
+                -moz-transform:scale(0.5); /* Firefox */
+                -webkit-transform:scale(0.5); /* Safari 和 Chrome */
+                -o-transform:scale(0.5); /* Opera */
+                opacity: 0.5;
+            }
+            100%{
+                transform:scale(1);
+                -ms-transform:scale(1); /* Internet Explorer */
+                -moz-transform:scale(1); /* Firefox */
+                -webkit-transform:scale(1); /* Safari 和 Chrome */
+                -o-transform:scale(1); /* Opera */
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-wrapper">
+        <div class="fixed-box">
+            <span class="fixed-title" onclick="hide()"><i>X</i></span>
+            <P class="fixed-tipMsg">The website is building,stay</P>
+            <p class="fixed-btns"><a href="javascript:void(0)" onclick="hide()">DETERMINE</a></p>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        function hide(){
+            $(".fixed-wrapper").hide()
+        }
+    </script>
+</body>
+</html>
